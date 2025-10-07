@@ -2,7 +2,7 @@
 	"version": "0.2.0",
 	"configurations": [
 	  {
-		"name": "-C/C++: cl.exe build and debug active file", // need modification
+		"name": "-C/C++: cl.exe build and debug active file",
 		"type": "cppvsdbg",
 		"request": "launch",
 		"program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
@@ -11,7 +11,7 @@
 		"cwd": "${workspaceFolder}",
 		"environment": [],
 		"externalConsole": false,
-		"preLaunchTask": "cl.exe build active file" // need modification
+		"preLaunchTask": "cl.exe build active file"
 	  }
 	]
   }
