@@ -1,19 +1,35 @@
 length = 8
 
-a = str(input())
-if ((len(a) > length) or (a.count('0') + a.count('1') != len(a))): exit()
-a += '0' * (length - len(a))
-print(a)
+def getStr():
+    return str(input())
 
-b = str(input())
-if ((len(b) > length) or (b.count('0') + b.count('1') != len(b))): exit()
-b += '0' * (length - len(b))
-print(b)
+def printStr(a):
+    print(a)
 
-result = ""
-for i in range(length):
-    if (a[i] == '1') & (b[i] == '1'):
-        result += '1'
-    else: result += '0'
+def isRightChars(a):
+    return ((len(a) <= length) and (a.count('0') + a.count('1') == len(a)))
+
+def addZeros(a):
+    return a + '0' * (length - len(a))
+
+def conjuction(a, b):
+    result = ""
+    for i in range(length):
+        if (a[i] == '1') & (b[i] == '1'):
+            result += '1'
+        else: result += '0'
+    return result
+
+a = getStr()
+if not isRightChars(a): exit()
+a = addZeros(a)
+printStr(a)
+
+b = getStr()
+if not isRightChars(b): exit()
+b = addZeros(b)
+printStr(b)
+
+result = conjuction(a, b)
 
 print(result)
