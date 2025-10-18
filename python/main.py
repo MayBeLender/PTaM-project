@@ -1,12 +1,12 @@
 length = 8
 
 a = str(input())
-if (len(a) > length) or not('1' in a) or not('0' in a): exit()
+if ((len(a) > length) or (a.count('0') + a.count('1') != len(a))): exit()
 a += '0' * (length - len(a))
 print(a)
 
 b = str(input())
-if (len(b) > length) or not('1' in b) or not('0' in b): exit()
+if ((len(b) > length) or (b.count('0') + b.count('1') != len(b))): exit()
 b += '0' * (length - len(b))
 print(b)
 
