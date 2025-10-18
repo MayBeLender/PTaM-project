@@ -1,35 +1,13 @@
-length = 8
+from bitString import BitString
 
-def getStr():
-    return str(input())
+a, b, result = BitString(), BitString(), BitString()
 
-def printStr(a):
-    print(a)
+a.input()
+a.print()
 
-def isRightChars(a):
-    return ((len(a) <= length) and (a.count('0') + a.count('1') == len(a)))
+b.input()
+b.print()
 
-def addZeros(a):
-    return a + '0' * (length - len(a))
+result = a.conjuction(b)
 
-def conjuction(a, b):
-    result = ""
-    for i in range(length):
-        if (a[i] == '1') & (b[i] == '1'):
-            result += '1'
-        else: result += '0'
-    return result
-
-a = getStr()
-if not isRightChars(a): exit()
-a = addZeros(a)
-printStr(a)
-
-b = getStr()
-if not isRightChars(b): exit()
-b = addZeros(b)
-printStr(b)
-
-result = conjuction(a, b)
-
-print(result)
+result.print()
