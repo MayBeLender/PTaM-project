@@ -13,4 +13,6 @@ int main()
     result = a.conjaction(b);
 
     result.print();
+
+    return 0;
 }
