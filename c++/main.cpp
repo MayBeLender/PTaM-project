@@ -11,8 +11,8 @@ int main()
 
         b.input();
 
-        result = a.conjaction(b);
-    } catch (const std::length_error& e) {
+        result = a & b;
+    } catch (const exception& e) {
         cout << e.what();
         exit(EXIT_FAILURE);
     }

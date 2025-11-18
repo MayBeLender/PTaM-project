@@ -91,9 +91,71 @@ void BitString::input() {
     for (int i = 0; i < length - s.size(); i++) {
         char_vec.push_back('0');
     }
-}
+} 
 
 BitString::~BitString() {
     char_vec.clear();
     char_vec.shrink_to_fit();
+}
+
+//Перегрузка Операторов
+BitString &BitString::operator=(const BitString &other) {
+    if (this == &other) { return *this; }
+
+    char_vec = other.char_vec;
+    return *this;
+}
+
+BitString BitString::operator<<(int count) {
+    if (count < 0) { return(*this >> -count); }
+
+    if (count >= length) {
+        return BitString(string(length,'0'));
+    }
+
+    string result;
+    for (int i = count; i < length; i++) {
+        result += char_vec[i];
+    }
+
+    return BitString(result + string(count,'0'));
+}
+
+BitString BitString::operator>>(int count) {
+    if (count < 0) { return(*this << -count); }
+
+    if (count >= length) {
+        return BitString(string(length,'0'));
+    }
+
+    string result;
+    for (int i = 0; i < length - count; i++) {
+        result += char_vec[i];
+    }
+
+    return BitString(string(count,'0') + result);
+}
+
+BitString BitString::operator&(BitString &other) {
+    if (length != other.length) {
+        throw std::length_error("BitStrings have different lengths");
+        //exit(EXIT_FAILURE);
+    }
+
+    string result;
+
+    for (int i = 0; i < length; i++) {
+        result.push_back(char_vec[i] & other.char_vec[i]);
+    }
+
+    return BitString(result);
+}
+
+char BitString::operator[](int index) {
+    if (index >= length) {
+        throw std::out_of_range("Index is out of BitString vector range");
+        //exit(EXIT_FAILURE);
+    }
+
+    return char_vec[index];
 }
