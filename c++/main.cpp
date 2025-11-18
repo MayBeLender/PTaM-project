@@ -6,11 +6,16 @@ int main()
 {
     BitString a, b, result;
 
-    a.input();
+    try {
+        a.input();
 
-    b.input();
+        b.input();
 
-    result = a.conjaction(b);
+        result = a.conjaction(b);
+    } catch (const std::length_error& e) {
+        cout << e.what();
+        exit(EXIT_FAILURE);
+    }
 
     result.print();
 

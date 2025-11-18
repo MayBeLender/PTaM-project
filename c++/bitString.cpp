@@ -19,7 +19,10 @@ BitString::BitString() {
 BitString::BitString(string in_str) {
     clear();
 
-    if (in_str.size() > length) { exit(EXIT_FAILURE); }
+    if (in_str.size() > length) {
+        throw std::length_error("Input string length more than BitString length");
+        //exit(EXIT_FAILURE);
+    }
 
     for (int i = 0; i < in_str.size(); i++) {
         if (isRightChar(in_str[i])) {
@@ -40,7 +43,10 @@ BitString::BitString(const BitString& other) {
 }
 
 BitString BitString::conjaction(BitString b) {
-    if (length != b.length) { exit(EXIT_FAILURE); }
+    if (length != b.length) {
+        throw std::length_error("BitStrings have different lengths");
+        //exit(EXIT_FAILURE);
+    }
 
     string result;
 
@@ -68,7 +74,10 @@ void BitString::input() {
 
     clear();
 
-    if (s.size() > length) { exit(EXIT_FAILURE); }
+    if (s.size() > length) {
+        throw std::length_error("Input string length more than BitString length");
+        exit(EXIT_FAILURE);
+    }
 
     for (int i = 0; i < s.size(); i++) {
         if (isRightChar(s[i])) {
@@ -85,7 +94,6 @@ void BitString::input() {
 }
 
 BitString::~BitString() {
-    //delete& char_vec;
     char_vec.clear();
     char_vec.shrink_to_fit();
 }
