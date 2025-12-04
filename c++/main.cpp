@@ -1,23 +1,21 @@
-#include "bitString.h"
+#include "geometry.h"
 #include <iostream>
+#include <tuple>
+#include <vector>
 using namespace std;
 
 int main()
 {
-    BitString a, b, result;
+    tuple<double, double> vertices[4] = {
+        tuple<double, double>(0,0),
+        tuple<double, double>(0,1),
+        tuple<double, double>(4,1),
+        tuple<double, double>(4,0)
+    };
 
-    try {
-        a.input();
+    Rectangle r(vertices);
 
-        b.input();
-
-        result = a & b;
-    } catch (const exception& e) {
-        cout << e.what();
-        exit(EXIT_FAILURE);
-    }
-
-    result.print();
+    cout << r.getLength();
 
     return 0;
 }
