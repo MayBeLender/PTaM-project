@@ -8,14 +8,14 @@ int main()
 {
     tuple<double, double> vertices[4] = {
         tuple<double, double>(0,0),
-        tuple<double, double>(0,1),
-        tuple<double, double>(4,1),
-        tuple<double, double>(4,0)
+        tuple<double, double>(0,2),
+        tuple<double, double>(2,2),
+        tuple<double, double>(2,0)
     };
 
-    Rectangle r(vertices);
+    Square s(vertices);
 
-    cout << r.getLength();
+    cout << s.getArea();
 
     return 0;
 }

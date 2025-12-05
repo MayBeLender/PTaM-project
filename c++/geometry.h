@@ -4,12 +4,16 @@
 using namespace std;
 
 class Shape {
-    public:
-        tuple<double, double> center;
+    protected:
+        tuple<double, double>* centerPtr;
         vector<tuple<double, double>> vertices;
+    public:
+        virtual double getLength() = 0;
+        virtual double getArea() = 0;
         const vector<tuple<double, double>>& getVertices();
         tuple<double, double> getCenter();
         void print();
+        ~Shape();
 };
 
 class Circle : public Shape {
@@ -17,17 +21,19 @@ class Circle : public Shape {
         double radius;
     public:
         Circle(tuple<double, double> pos, double radius, int resolution);
-        double getLength();
+        double getLength() override;
+        double getArea() override;
 };
 
 class Rectangle : public Shape {
     public:
         Rectangle(tuple<double, double> in_vertices[4]);
-        double getLength();
+        double getLength() override;
+        double getArea() override;
 };
 
 class Square : public Rectangle {
     public:
         Square(tuple<double, double> in_vertices[4]);
-        double getLength();
+        double getLength() override;
 };

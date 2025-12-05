@@ -12,7 +12,7 @@ const vector<tuple<double, double>>& Shape::getVertices() {
 }
 
 tuple<double, double> Shape::getCenter() {
-    return center;
+    return *centerPtr;
 }
 
 void Shape::print() {
@@ -21,9 +21,17 @@ void Shape::print() {
     }
 }
 
+Shape::~Shape() {
+    vertices.clear();
+    vertices.shrink_to_fit();
+
+    delete centerPtr;
+    centerPtr = nullptr;
+}
+
 //Circle
 Circle::Circle(tuple<double, double> pos, double radius, int resolution) {
-    center = pos;
+    centerPtr = &pos;
     this->radius = radius;
 
     for (int i = 0; i < resolution; i++) {
@@ -39,6 +47,10 @@ Circle::Circle(tuple<double, double> pos, double radius, int resolution) {
 
 double Circle::getLength() {
     return 2 * M_PI * radius;
+}
+
+double Circle::getArea() {
+    return M_PI * pow(radius,2);
 }
 
 //Square
@@ -59,7 +71,7 @@ Rectangle::Rectangle(tuple<double, double> in_vertices[4]) {
         y += get<1>(in_vertices[i]);
     }
 
-    center = tuple<double, double> (x/4, y/4);
+    centerPtr = new tuple<double, double> (x/4, y/4);
 }
 
 double Rectangle::getLength() {
@@ -75,4 +87,16 @@ double Rectangle::getLength() {
     }
 
     return length * 2;
+}
+
+double Rectangle::getArea() {
+    double x = get<0>(vertices[1]) - get<0>(vertices[0]);
+    double y = get<1>(vertices[1]) - get<1>(vertices[0]);
+
+    double area = sqrt(pow(x,2) + pow(y,2));
+
+    x = get<0>(vertices[2]) - get<0>(vertices[1]);
+    y = get<1>(vertices[2]) - get<1>(vertices[1]);
+
+    return area * sqrt(pow(x,2) + pow(y,2));
 }
