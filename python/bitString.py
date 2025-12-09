@@ -10,6 +10,13 @@ class BitString:
 
         self.addZeros()
 
+    def __copy__(self):
+        return BitString(self.line)
+
+    def __del__(self):
+        del self.line
+        del self.length
+
     def clear(self):
         self.line = ""
 
