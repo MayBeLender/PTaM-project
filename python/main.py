@@ -3,13 +3,15 @@ from bitString import BitString
 
 a, b, result = BitString(), BitString(), BitString()
 
-a.input()
-a.print()
+try:
+    a.input()
+    print(a)
 
-b = copy.copy(a)
-#b.input()
-b.print()
+    b.input()
+    print(b)
 
-result = a.conjuction(b)
+    result = a.conjuction(b)
 
-result.print()
+    print(result)
+except NameError as e:
+    print(e)
