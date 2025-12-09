@@ -5,13 +5,15 @@ a, b, result = BitString(), BitString(), BitString()
 
 try:
     a.input()
-    print(a)
+    #print(a)
 
-    b.input()
+    b = a << -4
     print(b)
+    # b.input()
+    # print(b)
 
-    result = a.conjuction(b)
+    # result = a & b
 
-    print(result)
+    # print(result)
 except NameError as e:
     print(e)

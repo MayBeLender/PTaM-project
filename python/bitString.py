@@ -36,7 +36,37 @@ class BitString:
     def addZeros(self):
         self.line += '0' * (self.length - len(self.line))
 
-    def conjuction(self, a):
+    def isRightChars(self):
+        return self.line.count('0') + self.line.count('1') == len(self.line)
+
+#=, <<, >>, &, []
+#Перегрузка операций
+    def assign(self, new_line):
+        if len(new_line) < 1: raise ValueError("Assigning value len must be greater than 0")
+        self.line = str(input())
+        self.length = len(self.line)
+
+    def __lshift__(self, i):
+        if (i < 0): return(self >> -i)
+        if (i >= self.length): return BitString('0' * self.length)
+        
+        result = ""
+        for index in range(i, self.length):
+            result += self[index]
+        
+        return BitString(result + '0' * i)
+
+    def __rshift__(self, i):
+        if (i < 0): return(self << -i)
+        if (i >= self.length): return BitString('0' * self.length)
+
+        result = ""
+        for index in range(0, self.length - i):
+            result += self[index]
+        
+        return BitString('0' * i + result)
+
+    def __and__(self, a):
         result = ""
 
         if self.length != a.length: raise ValueError("BitStrings must be equal sizes")
@@ -47,5 +77,6 @@ class BitString:
             else: result += '0'
         return BitString(result)
 
-    def isRightChars(self):
-        return self.line.count('0') + self.line.count('1') == len(self.line)
+    def __getitem__(self, i):
+        if i > self.length - 1: raise KeyError("Index out of range")
+        return self.line[i]
