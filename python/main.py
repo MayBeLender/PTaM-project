@@ -1,19 +1,7 @@
-import copy
-from bitString import BitString
+from geometry import *
 
-a, b, result = BitString(), BitString(), BitString()
+a = Rectangle(
+    [(0,0), (0,3), (2,3), (2,0)]
+)
 
-try:
-    a.input()
-    #print(a)
-
-    b = a << -4
-    print(b)
-    # b.input()
-    # print(b)
-
-    # result = a & b
-
-    # print(result)
-except NameError as e:
-    print(e)
+print(a.getArea())
